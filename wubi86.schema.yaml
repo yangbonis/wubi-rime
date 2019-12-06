@@ -1,0 +1,69 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: wubi86
+  name: "wubi86"
+  version: "1.0"
+  author:
+
+switches:
+  - name: full_shape
+    states: [ half-width, full-width ]
+  - name: extended_charset
+    states: [ normal, extend ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - table_translator
+    - lua_translator@date_translator # 自定义系统变量输出
+    - history_translator@history
+  filters:
+   # - lua_filter@single_char_first_filter # 单字优先方法
+
+speller:
+  max_code_length: 4                    # 四码上屏
+  auto_select: true                     # 自动上屏
+  auto_select_unique_candidate: true    # 无重码自动上屏
+
+translator:
+  dictionary: wubi86_jidian             # 翻译器将调取此字典文件
+  enable_charset_filter: true           # 开启字符集过滤
+  enable_completion: true               # 提前显示编码未输入完整的词条
+  enable_sentence: false
+  enable_user_dict: false
+
+history:
+  input: z
+  size: 3
+  initial_quality: 10000
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+#recognizer:
+#  import_preset: default
+#  patterns:
+#    reverse_lookup: "^z[a-z]*'?$"
