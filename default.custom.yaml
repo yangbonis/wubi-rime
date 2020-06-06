@@ -24,7 +24,7 @@ patch:
     good_old_caps_lock: true       # true: 在保持 cap 键原有的特征， false: 点击不会切换大小写
     switch_key:
       Caps_Lock: noop
-      Shift_L: noop
+      Shift_L: inline_ascii
       Shift_R: noop
       Control_L: noop
       Control_R: noop
